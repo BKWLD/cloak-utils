@@ -1,0 +1,12 @@
+{
+	"name": "@cloak-app/utils",
+	"version": "1.0.0",
+	"description": "Shared utility functions for Cloak packages.",
+	"repository": "git@github.com:BKWLD/cloak-utils.git",
+	"author": "Bukwild <info@bukwild.com>",
+	"license": "MIT",
+	"main": "src/index.js",
+	"publishConfig": {
+		"access": "public"
+	}
+}
