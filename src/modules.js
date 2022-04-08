@@ -10,3 +10,34 @@ export function requireOnce(moduleContainer, moduleName) {
 		moduleContainer.requireModule(moduleName)
 	}
 }
+
+// Setting default module options
+export function setDefaultOptions(options, moduleName, defaults) {
+	options.cloak = {
+		...options.cloak,
+		[moduleName]: {
+			...defaults,
+			...this.options.cloak?[moduleName],
+		}
+	}
+}
+
+// Combine setting default module options and then relaying those globally via
+// publicRuntimeConfig
+export function setPublicDefaultOptions(options, moduleName, defaults) {
+	setDefaultOptions(options, moduleName, defaults)
+	options.publicRuntimeConfig.cloak = {
+		...this.options.publicRuntimeConfig.cloak,
+		[moduleName]: this.options.cloak[moduleName],
+	}
+}
+
+// Combine setting default module options and then relaying those globally via
+// privateRuntimeConfig
+export function setPrivateDefaultOptions(options, moduleName, defaults) {
+	setDefaultOptions(options, moduleName, defaults)
+	options.privateRuntimeConfig.cloak = {
+		...this.options.privateRuntimeConfig.cloak,
+		[moduleName]: this.options.cloak[moduleName],
+	}
+}
