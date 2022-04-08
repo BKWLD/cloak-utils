@@ -12,32 +12,32 @@ export function requireOnce(moduleContainer, moduleName) {
 }
 
 // Setting default module options
-export function setDefaultOptions(options, moduleName, defaults) {
-	options.cloak = {
-		...options.cloak,
+export function setDefaultOptions(moduleContainer, moduleName, defaults) {
+	moduleContainer.options.cloak = {
+		...moduleContainer.options.cloak,
 		[moduleName]: {
 			...defaults,
-			...options.cloak?.[moduleName],
+			...moduleContainer.options.cloak?.[moduleName],
 		}
 	}
 }
 
 // Combine setting default module options and then relaying those globally via
 // publicRuntimeConfig
-export function setPublicDefaultOptions(options, moduleName, defaults) {
-	setDefaultOptions(options, moduleName, defaults)
-	options.publicRuntimeConfig.cloak = {
-		...options.publicRuntimeConfig.cloak,
-		[moduleName]: options.cloak[moduleName],
+export function setPublicDefaultOptions(moduleContainer, moduleName, defaults) {
+	setDefaultOptions(moduleContainer, moduleName, defaults)
+	moduleContainer.options.publicRuntimeConfig.cloak = {
+		...moduleContainer.options.publicRuntimeConfig.cloak,
+		[moduleName]: moduleContainer.options.cloak[moduleName],
 	}
 }
 
 // Combine setting default module options and then relaying those globally via
 // privateRuntimeConfig
-export function setPrivateDefaultOptions(options, moduleName, defaults) {
-	setDefaultOptions(options, moduleName, defaults)
-	options.privateRuntimeConfig.cloak = {
-		...options.privateRuntimeConfig.cloak,
-		[moduleName]: options.cloak[moduleName],
+export function setPrivateDefaultOptions(moduleContainer, moduleName, defaults) {
+	setDefaultOptions(moduleContainer, moduleName, defaults)
+	moduleContainer.options.privateRuntimeConfig.cloak = {
+		...moduleContainer.options.privateRuntimeConfig.cloak,
+		[moduleName]: moduleContainer.options.cloak[moduleName],
 	}
 }
