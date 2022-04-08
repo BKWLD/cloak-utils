@@ -17,7 +17,6 @@ export function setDefaultOptions(options, moduleName, defaults) {
 		...options.cloak,
 		[moduleName]: {
 			...defaults,
-			...this.options.cloak?[moduleName],
 			...options.cloak?.[moduleName],
 		}
 	}
@@ -28,8 +27,8 @@ export function setDefaultOptions(options, moduleName, defaults) {
 export function setPublicDefaultOptions(options, moduleName, defaults) {
 	setDefaultOptions(options, moduleName, defaults)
 	options.publicRuntimeConfig.cloak = {
-		...this.options.publicRuntimeConfig.cloak,
-		[moduleName]: this.options.cloak[moduleName],
+		...options.publicRuntimeConfig.cloak,
+		[moduleName]: options.cloak[moduleName],
 	}
 }
 
@@ -38,7 +37,7 @@ export function setPublicDefaultOptions(options, moduleName, defaults) {
 export function setPrivateDefaultOptions(options, moduleName, defaults) {
 	setDefaultOptions(options, moduleName, defaults)
 	options.privateRuntimeConfig.cloak = {
-		...this.options.privateRuntimeConfig.cloak,
-		[moduleName]: this.options.cloak[moduleName],
+		...options.privateRuntimeConfig.cloak,
+		[moduleName]: options.cloak[moduleName],
 	}
 }
