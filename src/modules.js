@@ -18,6 +18,7 @@ export function setDefaultOptions(options, moduleName, defaults) {
 		[moduleName]: {
 			...defaults,
 			...this.options.cloak?[moduleName],
+			...options.cloak?.[moduleName],
 		}
 	}
 }
