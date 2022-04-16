@@ -11,6 +11,14 @@ export function requireOnce(moduleContainer, moduleName) {
 	}
 }
 
+// Add a module during 'modules:done' so other modules have a chance to set
+// options before the module executes
+export function requireLate(moduleContainer, moduleName) {
+	moduleContainer.nuxt.hook('modules:done', moduleContainer => {
+		requireOnce(moduleContainer, moduleName)
+	})
+}
+
 // Setting default module options
 export function setDefaultOptions(moduleContainer, moduleName, defaults) {
 	moduleContainer.options.cloak = {
