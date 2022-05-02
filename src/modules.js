@@ -21,12 +21,10 @@ export function requireLate(moduleContainer, moduleName) {
 
 // Setting default module options
 export function setDefaultOptions(moduleContainer, moduleName, defaults) {
-	moduleContainer.options.cloak = {
-		...moduleContainer.options.cloak,
-		[moduleName]: {
-			...defaults,
-			...moduleContainer.options.cloak?.[moduleName],
-		}
+	if (!moduleContainer.options.cloak) moduleContainer.options.cloak = {}
+	moduleContainer.options.cloak[moduleName] = {
+		...defaults,
+		...moduleContainer.options.cloak[moduleName],
 	}
 }
 
