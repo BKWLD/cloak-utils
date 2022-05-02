@@ -49,3 +49,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Don't store lock file
+yarn.lock
