@@ -1,6 +1,6 @@
 {
 	"name": "@cloak-app/utils",
-	"version": "1.5.0",
+	"version": "1.6.0",
 	"description": "Shared utility functions for Cloak packages.",
 	"repository": "git@github.com:BKWLD/cloak-utils.git",
 	"author": "Bukwild <info@bukwild.com>",
