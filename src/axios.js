@@ -7,7 +7,7 @@ import MockAdapter from 'axios-mock-adapter'
 // - query: Text found in the `query` payload, usually query name
 // - variables: Variables to exact match in the paylod
 // - response: Object that should be returned on match
-export function mockAxiosGql(client, mocks) {
+export function mockAxiosGql(client, mocks, { passthrough } = {}) {
 
 	// Make mock instance
 	const mock = new MockAdapter(client)
@@ -29,15 +29,20 @@ export function mockAxiosGql(client, mocks) {
 				}
 			}
 
-			// Checks out
+			// This was a match
 			return true
 		})
 
 		// Return success response
 		if (match) return [200, match.response]
 
-		// A request didn't match expectations
-		throw `Unexepcted request for mock: ${query.payload}, ${query.variables}`
-	})
+		// Support passthrouugh
+		// https://github.com/ctimmerm/axios-mock-adapter/issues/211#issuecomment-511542118
+		if (passthrough) {
+			return mock.originalAdapter(config)
+		} else {
+			throw `Unexepcted request for mock: ${query.payload}, ${query.variables}`
+		}
 
+	})
 }
