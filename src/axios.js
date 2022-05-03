@@ -24,7 +24,7 @@ export function mockAxiosGql(client, mocks) {
 
 			// Check that all variables match...
 			for (const [key, value] of Object.entries(variables)) {
-				if (payload[key] != value) return false
+				if (payload.variables[key] != value) return false
 			}
 
 			// Checks out
