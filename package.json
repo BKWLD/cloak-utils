@@ -15,5 +15,8 @@
 		"slashes": "^3.0.10",
 		"webpack": "^4.0.0 || ^5.0.0",
 		"webpack-graphql-loader": "gpoitch/graphql-loader#gp/refresh"
+	},
+	"devDependencies": {
+		"axios": "^0.21.1"
 	}
 }
